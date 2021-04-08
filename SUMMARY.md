@@ -1,8 +1,5 @@
 # Table of contents
 
 * [Home](README.md)
-
-## Android
-
-
+* [Android](android.md)
 
