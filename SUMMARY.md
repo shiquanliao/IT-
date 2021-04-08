@@ -1,5 +1,6 @@
 # Table of contents
 
 * [Home](README.md)
-* [Android](android.md)
+* [Android](android/README.md)
+  * [NDK](android/ndk.md)
 
