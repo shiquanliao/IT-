@@ -30,7 +30,7 @@ Java_com_stone_nativeC_NativeCInf_callNativeStatic(JNIEnv *, jclass)
 */
 ```
 
-[**JNI 方法解析 ( JNIEXPORT 与 JNICALL 宏定义作用**](https://blog.csdn.net/shulianghan/article/details/104072587)
+[**JNI 方法解析 ( JNIEXPORT 与 JNICALL 宏定义作用)**](https://blog.csdn.net/shulianghan/article/details/104072587)
 
 `extern "C"`的作用：**避免C++编绎器按照C++的方式去编绎C函数 **
 
@@ -82,4 +82,4 @@ int registerMethods(JNIEnv *env, const char *className, const JNINativeMethod *m
 | 开发体验         | 几乎无副作用 | 重构代码时比较繁琐            |
 | Android Studio   | 不能关联跳转 | 可以关联跳转                  |
 
-理解动态绑定跟静态绑定的互补关系跟调用时机（可以作为技巧的Hook点，运行时替换so库）
+**理解动态绑定跟静态绑定的互补关系跟调用时机（可以作为技巧的Hook点，运行时替换so库）**
