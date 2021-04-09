@@ -48,3 +48,48 @@ description: 探究java跟native之间的数据传递方式跟需要注意的地
 
 
 
+
+
+## 对象数组传递
+
+> 注意点： 在设计JNI接口的时候，尽量避免传递对象，这样可以避免在jni为了操作属性而使用反射，降低性能。
+>
+> JNI中使用反射的方法，比如`GetDoubleField(obj,latFieldId)`
+
+```c++
+void useJObjectArray2(JNIEnv *env, jclass instance, jobjectArray objArray){
+    jfieldId latFieldId = NULL, IngFieldId = NULL;
+    jint length = env->GetArrayLength(objArray);
+    for(int i = 0; i < length; i++){
+        jobjectArray obj = env->GetObjectArrayElement(objArray, i);
+        if(latFieldId == NULL){
+            ...// init latFieldId & IngFieldId
+        }
+        jdouble lat = env->GetDoubleField(obj,latFieldId); //访问java对象，会使用到反射
+        jdouble lng = env->GetDoubleField(obj,IngFieldId);
+        env->DeleteLocalRef(obj); // localReference 使用需要注意数量限制（一般为：512）
+        LOGD("LatLng(%f, %f)", lat, lng);
+    }
+}
+```
+
+## DirectBuffer
+
+```java
+// -----------java
+ByteBuffer buffer = ByteBuffer.allocateDirect(100);
+buffer.putInt(...);
+buffer.flip();
+NativeCInf.useDirectBuffer(buffer, buffer.limit());
+```
+
+```c++
+// -----------c++
+void*       (*GetDirectBufferAddress)(JNIEnv*, jobject);
+
+
+int *bufPtr = (int*) env->GetDirectBufferAddress(buf);
+for(int i = 0; i < length / sizeof(int); i++){
+    LOGI("useArray: %d", bufPtr[i]); // 注意字节序
+}
+```
