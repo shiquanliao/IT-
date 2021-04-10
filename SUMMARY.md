@@ -1,6 +1,8 @@
 # Table of contents
 
 * [Home](README.md)
+* [C/C++](c-c++/README.md)
+  * [c++----杂记](c-c++/c++-za-ji.md)
 * [Android](android/README.md)
   * [NDK](android/ndk/README.md)
     * [JNI----CPU架构相关的知识](android/ndk/jia-gou-xiang-guan-de-zhi-shi.md)
