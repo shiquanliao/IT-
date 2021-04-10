@@ -8,6 +8,8 @@
   * [c++----杂记](c-c++/c++-za-ji.md)
   * [c/c++技术网站](c-c++/cc++-ji-shu-wang-zhan.md)
 * [Android](android/README.md)
+  * [Activity](android/activity/README.md)
+    * [Activity启动流程](android/activity/activity-qi-dong-liu-cheng.md)
   * [源码](android/yuan-ma/README.md)
     * [How Android Boots Up](android/yuan-ma/how-android-boots-up.md)
   * [NDK](android/ndk/README.md)
