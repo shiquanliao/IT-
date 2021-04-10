@@ -39,3 +39,7 @@ setState(() {
 
 \*\*\*\*[**flutter 跟原生通信方式**](https://medium.com/flutter/flutter-platform-channels-ce7f540a104e)\*\*\*\*
 
+#### const vs final
+
+> const必须在编译期就确定， final可以后期在runtime赋值
+
