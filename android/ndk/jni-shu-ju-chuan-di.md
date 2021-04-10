@@ -6,7 +6,7 @@ description: 探究java跟native之间的数据传递方式跟需要注意的地
 
 ## 字符串操作
 
-* GetStringUTFChars/ReleaseStringUTFChars
+* GetStringUTFChars/ReleaseStringUTFChars/NewStringUTF(可以正确打印中英文)
 
   ```cpp
   const char* (*GetStringUTFChars)(JNIEnv*, jstring, jboolean*);
@@ -15,7 +15,7 @@ description: 探究java跟native之间的数据传递方式跟需要注意的地
   // \0编码成0xC080, 不会影响C字符串结尾
   ```
 
-* GetStringChars/ReleaseStringChars
+* GetStringChars/ReleaseStringChars/NewString(能正确打印英文, 不能正确打印中文)
 
   ```cpp
   const jchar* (*GetStringChars)(JNIEnv*, jstring, jboolean*);
