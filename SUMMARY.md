@@ -2,6 +2,8 @@
 
 * [Home](README.md)
 * [Android](android/README.md)
+  * [编译打包](android/bian-yi-da-bao.md)
+  * [编译](android/bian-yi.md)
   * [NDK](android/ndk/README.md)
     * [JNI----CPU架构相关的知识](android/ndk/jia-gou-xiang-guan-de-zhi-shi.md)
     * [JNI----函数绑定](android/ndk/jni-han-shu-bang-ding.md)
