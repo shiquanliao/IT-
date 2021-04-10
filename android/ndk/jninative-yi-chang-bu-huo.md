@@ -1,5 +1,4 @@
 ---
-
 description: 谈论在NDK开发中，关于出现了crash怎么捕获异常
 ---
 
@@ -11,7 +10,7 @@ description: 谈论在NDK开发中，关于出现了crash怎么捕获异常
 > * native层任意位置获取jclass的方法
 > * 底层线程跟JVM的关系
 
-异常捕获我们需要做的工作有: 
+异常捕获我们需要做的工作有:
 
 1. 捕获异常
 2. 清理native层和java层的资源
@@ -19,7 +18,7 @@ description: 谈论在NDK开发中，关于出现了crash怎么捕获异常
 
 **javaVM**
 
-```c++
+```cpp
 static JavaVM *javaVM;
 
 extern "C" JNIEXPORT jint JNICALL
@@ -29,10 +28,9 @@ JNI_OnLoad(JavaVM *vm, void *) {
 }
 ```
 
-
 **JNIEnvHelper**
 
-```c++
+```cpp
 class JNIEnvHelper {
 public:
     JNIEnv *env;
@@ -55,11 +53,9 @@ private:
 };
 ```
 
-
-
 **classLoader**
 
-```c++
+```cpp
 static jobject classLoader;
 
 jint setUpClassLoader(JNIEnv *env) {
@@ -72,11 +68,9 @@ jint setUpClassLoader(JNIEnv *env) {
 }
 ```
 
-
-
 **findClass**
 
-```c++
+```cpp
 jclass findClass(JNIEnv *env, const char *name) {
     if (env == nullptr) return nullptr;
     jclass classLoaderClass = env->GetObjectClass(classLoader);
@@ -88,11 +82,9 @@ jclass findClass(JNIEnv *env, const char *name) {
 }
 ```
 
+**android\_signal\_handler**
 
-
-**android_signal_handler**
-
-```c++
+```cpp
 static void android_signal_handler(int signum, siginfo_t *info, void *reserved) {
     if (javaVM) {
         JNIEnvHelper jniEnvHelper;
@@ -118,11 +110,7 @@ static void android_signal_handler(int signum, siginfo_t *info, void *reserved) 
 }
 ```
 
-
-
-
-
-```c++
+```cpp
 static struct sigaction old_signalHandlers[NSIG]; // old_signalHandlers 为static数组
 
 void setUpGlobalSignalHandler() {
@@ -143,13 +131,11 @@ void setUpGlobalSignalHandler() {
 }
 ```
 
-------
-
 java层
 
 ```java
 public class HandleNativeError{
-	public static void nativeErrorCallback(int signal){
+    public static void nativeErrorCallback(int signal){
         Log.e("NativeError","[" + Thread.currentThread().getName() + "] Signal: " + signal);
     }
 }
