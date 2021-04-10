@@ -7,4 +7,5 @@
     * [JNI----函数绑定](android/ndk/jni-han-shu-bang-ding.md)
     * [JNI----数据传递](android/ndk/jni-shu-ju-chuan-di.md)
     * [JNI----native异常捕获](android/ndk/jninative-yi-chang-bu-huo.md)
+    * [JNI----杂记](android/ndk/jni-za-ji.md)
 
