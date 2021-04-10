@@ -8,6 +8,8 @@
   * [c++----杂记](c-c++/c++-za-ji.md)
   * [c/c++技术网站](c-c++/cc++-ji-shu-wang-zhan.md)
 * [Android](android/README.md)
+  * [源码](android/yuan-ma/README.md)
+    * [How Android Boots Up](android/yuan-ma/how-android-boots-up.md)
   * [NDK](android/ndk/README.md)
     * [JNI----CPU架构相关的知识](android/ndk/jia-gou-xiang-guan-de-zhi-shi.md)
     * [JNI----函数绑定](android/ndk/jni-han-shu-bang-ding.md)
