@@ -46,7 +46,7 @@ description: 探究java跟native之间的数据传递方式跟需要注意的地
 
 ![jni\_copy\_false](../../.gitbook/assets/jni_copy_true.jpg)
 
-
+[深入理解JNI字符串](https://www.cnblogs.com/mingfeng002/p/6515031.html)
 
 
 
