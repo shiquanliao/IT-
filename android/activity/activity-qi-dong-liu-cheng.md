@@ -15,11 +15,13 @@
 1. Binder缓**冲区大小**的限制
 2. 数据必须**序列化**
 
+### Activity实例化
+
+Q: activity不能自己实现构造函数， fragment不能添加有参数的构造函数，为什么?
 
 
 
 
-### Activity转场动画
 
 
 
