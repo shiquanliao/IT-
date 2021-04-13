@@ -10,6 +10,7 @@
 * [Android](android/README.md)
   * [Activity](android/activity/README.md)
     * [Activity启动流程](android/activity/activity-qi-dong-liu-cheng.md)
+    * [在任意位置获取activity并添加view](android/activity/zai-ren-yi-wei-zhi-huo-qu-activity-bing-tian-jia-view.md)
     * [Activity转场动画](android/activity/activity-zhuan-chang-dong-hua.md)
     * [Activity窗口显示流程](android/activity/activity-chuang-kou-xian-shi-liu-cheng.md)
   * [ContentProvider](android/contentprovider.md)
