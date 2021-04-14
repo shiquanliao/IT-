@@ -16,6 +16,7 @@
   * [ContentProvider](android/contentprovider.md)
   * [Handler](android/untitled/README.md)
     * [关于Handler Delay消息延时可靠性](android/untitled/guan-yu-handler-delay-xiao-xi-yan-shi-ke-kao-xing.md)
+    * [Looper相关](android/untitled/looper-xiang-guan.md)
   * [源码](android/yuan-ma/README.md)
     * [How Android Boots Up](android/yuan-ma/how-android-boots-up.md)
   * [NDK](android/ndk/README.md)
