@@ -37,3 +37,6 @@ Looper是对进程的概念, 而ANR是作用在某个阶段的监控作用,Loope
 ### Looper为什么不会导致CPU占用率高
 
 底层epoll_wait会阻塞, 让出CPU的控制权, 等到了有消息的时候, 被系统中断重新唤醒.
+
+> 相关的类: `epoll_create`, `epoll_ctl`, `epoll_wait`
+
