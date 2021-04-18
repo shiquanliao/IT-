@@ -24,11 +24,11 @@ public class ActivityExt{
         this.activity = activity;
         contentParent = (ViewGroup)activity.findViewById(android.R.id.content);
     }
-    
+
     public void addContentView(View view, ViewGroup.LayoutParams params){
         contentParent.addView(view, params);
     }
-    
+
     public void removeContentView(View view){
         contentParent.removeView(view);
     }
