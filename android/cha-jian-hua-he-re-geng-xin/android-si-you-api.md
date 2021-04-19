@@ -44,8 +44,39 @@ Android P 增加了一个API名单
 | 白名单   | SDK, 所有APP均能访问                                         |
 | -------- | ------------------------------------------------------------ |
 | 浅灰名单 | 仍可以访问的非SDK函数/字段                                   |
-| 深灰名单 | 1. 对目标SDK低于API级别28的应用,允许使用深灰名单接口 2. 对目标SDK低于API级别28的应用,允许使用深灰名单接口 |
+| 深灰名单 | 1. 对目标SDK低于API级别28的应用,允许使用深灰名单接口 <br />2. 对目标SDK低于API级别28的应用,允许使用深灰名单接口 |
 | 黑名单   | 受限, 无论目标SDK如何, 平台将表现为似乎接口不存在            |
+
+**Android实现这些api的限制就是通过修改java 反射的逻辑来实现的**
+
+```java
+public Method getDeclaredMethod(String name, Class<?>...parameterTypes)
+```
+
+```java
+private native Method getDeclaredMethodInternal(String name, Class<?>[] args);
+```
+
+```c++
+static jobject Class_getDeclaredMethodInternal(JNIEnv *env, jobject javaThis, 
+                                              jstring name, jobject args){
+    ...
+    if(reslut == nullptr || ShouldBlockAccessToMember(result->GetArtMethod(), soa.Self())){
+        return nullptr;
+    }
+    return soa.AddLocalReference<jobject>(result.Get());
+}
+```
+
+```c++
+ALWAYS_INLINE
+static bool ShouldBlockAccessToMember(T *member, Thread *self){
+    hiddenapi::Action action = hiddenapi:GetMemberAction(
+    member, self, IsCallerTrusted, hiddenapi::Reflection);
+    ...
+    return action == hidenapi::kDeny;
+}
+```
 
 
 
