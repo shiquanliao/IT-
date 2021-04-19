@@ -97,5 +97,40 @@ public final int getAllocationByteCount(){
 
 * res/drawable-xxxhdpi
 
+### Drawable中的图片加载流程
+
+BitmapFactory
+
+```java
+public static Bitmap decodeResource(Resources res, int id, Options opts){
+    validate(opts);
+    Bitmap bm = null;
+    InputStream is = null;
+    
+    final TypeValue value = new TypeValue();
+    is = res.openRawResource(id, value);
+    
+    bm = decodeResourceStream(res, value, is, null, opts);
+    
+    return bm;
+}
+
+public static Bitmap decodeResourceStream(...){
+    ...
+    if(opts.inDensity == 0 && value != null){
+        final int density = value.density;
+        if(density == TypeValue.DENSITY_DEFALUT)
+            opts.inDensity = DisplayMetrics.DENSITY_DEFALUT;
+        else if(density != TypeValue.DENSITY_NONE)
+            opts.inDensity = density;
+    }
+    if(opts.inTargetDensity == 0 && res != null)
+        opts.inTargetDensity = res.getDisplayMetrics().densityDpi;
+    return decodeStream(is, pad, opts);
+}
+```
+
+
+
 ### 图片内存占用大小和优化
 
