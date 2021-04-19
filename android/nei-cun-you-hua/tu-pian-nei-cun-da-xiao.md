@@ -96,7 +96,8 @@ public final int getAllocationByteCount(){
 
 ## Drawable中的图片加载流程
 
-BitmapFactory
+{% tabs %}
+{% tab title="BitmapFactory.java" %}
 
 ```java
 public static Bitmap decodeResource(Resources res, int id, Options opts){
@@ -127,8 +128,12 @@ public static Bitmap decodeResourceStream(...){
 }
 ```
 
+{% endtab %}
+{% endtabs %}
+
 {% tabs %}
 {% tab title="BitmapFactory.cpp" %}
+
 ```java
 static jobject doDecode(..., jobject options){
 }
