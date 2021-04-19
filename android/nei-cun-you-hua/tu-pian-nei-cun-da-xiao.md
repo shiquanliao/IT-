@@ -134,12 +134,36 @@ public static Bitmap decodeResourceStream(...){
 {% tabs %}
 {% tab title="BitmapFactory.cpp" %}
 
-```java
+```c++
 static jobject doDecode(..., jobject options){
+    ...
+    int scaledWidth = size.width();
+    int scaledHeight = size.height();
+    if(needsFineScale(code->getInfo().dimensions(), size, sampleSize)){
+        willScale = true;
+        scaledWidth = code->getInfo().width() / sampleSize;
+        scaledHeight = code->getInfo().height() / sampleSize;
+    }
+    ...
+        
+    if(scale != 1.0f){
+        willScale = true;
+        scaledWidth = static_cast<int>(scaledWidth * scaled  + 0.5f);
+        scaledHeight = static_cast<int>(scaledHeight * scaled + 0.5f);
+    }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
 ## 图片内存占用大小和优化
+
+* 跟文件格式无关, 所以是jpg, 还是png没有要求
+* 使用 inSampleSize 采样: 大图  -> 小图
+* 使用矩阵变换来放大图片: 小兔 -> 大图
+* 使用RGB_565加载不透明图片
+* 使用9-patch图片做背景
+* 不使用图片
+  * 优先使用VectorDrawable
+  * 时间跟技术允许的话,使用代码编写动画.
 
