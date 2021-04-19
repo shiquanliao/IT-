@@ -27,6 +27,7 @@
   * [内存优化](android/android/README.md)
     * [OOM相关](android/android/oom-xiang-guan.md)
     * [图片缓存](android/android/tu-pian-huan-cun.md)
+    * [图片大小](android/android/tu-pian-da-xiao.md)
   * [源码](android/yuan-ma/README.md)
     * [How Android Boots Up](android/yuan-ma/how-android-boots-up.md)
   * [编译打包](android/bian-yi-da-bao/README.md)
