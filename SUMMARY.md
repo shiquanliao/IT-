@@ -10,6 +10,8 @@
 * [Android](android/README.md)
   * [内存优化](android/nei-cun-you-hua/README.md)
     * [OOM相关](android/nei-cun-you-hua/oom-xiang-guan.md)
+    * [图片缓存](android/nei-cun-you-hua/tu-pian-huan-cun.md)
+    * [图片内存大小](android/nei-cun-you-hua/tu-pian-nei-cun-da-xiao.md)
   * [Activity](android/activity/README.md)
     * [Activity启动流程](android/activity/activity-qi-dong-liu-cheng.md)
     * [在任意位置获取activity并添加view](android/activity/zai-ren-yi-wei-zhi-huo-qu-activity-bing-tian-jia-view.md)
