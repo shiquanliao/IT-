@@ -24,7 +24,7 @@
     * [JNI----数据传递](android/ndk/jni-shu-ju-chuan-di.md)
     * [JNI----native异常捕获](android/ndk/jninative-yi-chang-bu-huo.md)
     * [JNI----杂记](android/ndk/jni-za-ji.md)
-  * [内存优化](android/android/README.md)
+  * [内存优化-1](android/android/README.md)
     * [OOM相关](android/android/oom-xiang-guan.md)
     * [图片缓存](android/android/tu-pian-huan-cun.md)
     * [图片大小](android/android/tu-pian-da-xiao.md)
