@@ -98,7 +98,6 @@ public final int getAllocationByteCount(){
 
 {% tabs %}
 {% tab title="BitmapFactory.java" %}
-
 ```java
 public static Bitmap decodeResource(Resources res, int id, Options opts){
     validate(opts);
@@ -127,14 +126,12 @@ public static Bitmap decodeResourceStream(...){
     return decodeStream(is, pad, opts);
 }
 ```
-
 {% endtab %}
 {% endtabs %}
 
 {% tabs %}
 {% tab title="BitmapFactory.cpp" %}
-
-```c++
+```cpp
 static jobject doDecode(..., jobject options){
     ...
     int scaledWidth = size.width();
@@ -145,7 +142,7 @@ static jobject doDecode(..., jobject options){
         scaledHeight = code->getInfo().height() / sampleSize;
     }
     ...
-        
+
     if(scale != 1.0f){
         willScale = true;
         scaledWidth = static_cast<int>(scaledWidth * scaled  + 0.5f);
@@ -159,9 +156,9 @@ static jobject doDecode(..., jobject options){
 ## 图片内存占用大小和优化
 
 * 跟文件格式无关, 所以是jpg, 还是png没有要求
-* 使用 inSampleSize 采样: 大图  -> 小图
-* 使用矩阵变换来放大图片: 小兔 -> 大图
-* 使用RGB_565加载不透明图片
+* 使用 inSampleSize 采样: 大图  -&gt; 小图
+* 使用矩阵变换来放大图片: 小兔 -&gt; 大图
+* 使用RGB\_565加载不透明图片
 * 使用9-patch图片做背景
 * 不使用图片
   * 优先使用VectorDrawable
