@@ -8,6 +8,8 @@
   * [c++----杂记](c-c++/c++-za-ji.md)
   * [c/c++技术网站](c-c++/cc++-ji-shu-wang-zhan.md)
 * [Android](android/README.md)
+  * [内存优化](android/nei-cun-you-hua/README.md)
+    * [OOM相关](android/nei-cun-you-hua/oom-xiang-guan.md)
   * [Activity](android/activity/README.md)
     * [Activity启动流程](android/activity/activity-qi-dong-liu-cheng.md)
     * [在任意位置获取activity并添加view](android/activity/zai-ren-yi-wei-zhi-huo-qu-activity-bing-tian-jia-view.md)
