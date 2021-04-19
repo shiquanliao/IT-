@@ -1,17 +1,17 @@
 # 图片内存大小
 
-### 图片加载到内存的过程已经变换
+## 图片加载到内存的过程已经变换
 
-|            | MDPI | HDPI | XHDPI | XXHDPI | XXXHDPI |
-| :--------: | :--: | :--: | :---: | :----: | :-----: |
-|  density   | 160  | 240  |  320  |  480   |   640   |
-| densityDpi |  1   | 1.5  |   2   |   3    |    4    |
+|  | MDPI | HDPI | XHDPI | XXHDPI | XXXHDPI |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| density | 160 | 240 | 320 | 480 | 640 |
+| densityDpi | 1 | 1.5 | 2 | 3 | 4 |
 
 {% hint style="warning" %}
 **Any problem** in computer science can be solved by **another layer of indirection**.
 {% endhint %}
 
-#### Bitmap
+### Bitmap
 
 **getByteCount**
 
@@ -22,7 +22,7 @@ public final int getByteCount(){
              + "This is  undefined behavior!");
         return 0;
     }
-    
+
     // int result permits bitmaps up to 46340 x 46340
     return getRowBtyes() * getHeight();
 }
@@ -43,9 +43,9 @@ public final int getAllocationByteCount(){
 
 [两者的区别](https://juejin.cn/post/6844903604822736909)
 
-### 图片加载的路径
+## 图片加载的路径
 
-**图片文件的 宽高: 112 * 131, 目标机器的dpi为2.75**
+**图片文件的 宽高: 112 \* 131, 目标机器的dpi为2.75**
 
 * assets
 
@@ -55,7 +55,7 @@ public final int getAllocationByteCount(){
   // png一般用argb_8888格式加载  
   // 宽 * 高 * 4 = 112 * 131 * 4 = 58688 B
   // 如果使用rgb_565的话大小就是:  112 * 131 * 2 = 29344 B
-  
+
   // 如果是 ----------------jpg
   //jpg一般用rgb_565格式加载
   // 宽 * 高 * 2 = 112 * 131 * 2 = 29344 B
@@ -66,16 +66,14 @@ public final int getAllocationByteCount(){
   ```
 
 * res/raw
-
 * res/drawable-mdpi
-
 * res/drawable-hdpi
 
   ```kotlin
   // 大小跟densityDpi有关, 跟屏幕密度也有关
   //新图的高度 = 原图高度 * (设备的 dpi / 目录对应的 dpi )
   //新图的宽度 = 原图宽度 * (设备的 dpi / 目录对应的 dpi )
-  
+
   BitmapFactory.decodeResource(resoures, R.drawable.droid_hdpi)
   // 宽 = 112 * (2.75 / 1.5) = 205
   // 高 = 131 * (2.75 / 1.5) = 240
@@ -84,7 +82,6 @@ public final int getAllocationByteCount(){
   ```
 
 * res/drawable-xhdpi
-
 * res/drawable-xxhdpi
 
   ```kotlin
@@ -97,7 +94,7 @@ public final int getAllocationByteCount(){
 
 * res/drawable-xxxhdpi
 
-### Drawable中的图片加载流程
+## Drawable中的图片加载流程
 
 BitmapFactory
 
@@ -106,12 +103,12 @@ public static Bitmap decodeResource(Resources res, int id, Options opts){
     validate(opts);
     Bitmap bm = null;
     InputStream is = null;
-    
+
     final TypeValue value = new TypeValue();
     is = res.openRawResource(id, value);
-    
+
     bm = decodeResourceStream(res, value, is, null, opts);
-    
+
     return bm;
 }
 
@@ -130,7 +127,14 @@ public static Bitmap decodeResourceStream(...){
 }
 ```
 
+{% tabs %}
+{% tab title="BitmapFactory.cpp" %}
+```java
+static jobject doDecode(..., jobject options){
+}
+```
+{% endtab %}
+{% endtabs %}
 
-
-### 图片内存占用大小和优化
+## 图片内存占用大小和优化
 
