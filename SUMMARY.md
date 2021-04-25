@@ -14,6 +14,7 @@
 * [Android](android/README.md)
   * [插件化和热更新](android/cha-jian-hua-he-re-geng-xin/README.md)
     * [Android私有API](android/cha-jian-hua-he-re-geng-xin/android-si-you-api.md)
+    * [VirtualAPK分析](android/cha-jian-hua-he-re-geng-xin/virtualapk-fen-xi.md)
   * [内存优化](android/nei-cun-you-hua/README.md)
     * [OOM相关](android/nei-cun-you-hua/oom-xiang-guan.md)
     * [图片缓存](android/nei-cun-you-hua/tu-pian-huan-cun.md)
