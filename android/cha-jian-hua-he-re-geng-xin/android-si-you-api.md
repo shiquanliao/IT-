@@ -80,3 +80,5 @@ static bool ShouldBlockAccessToMember(T *member, Thread *self){
 
 ## 如何规避限制
 
+通过反射hook其中判断逻辑, 来通过反射成功的逻辑.
+
