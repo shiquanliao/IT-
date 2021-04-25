@@ -1,5 +1,9 @@
 # VirtualAPK分析
 
+
+
+## 加载类
+
 ```java
 protected ClassLoader createClassLoader(Context context, File apk,
                                    File libsDir, Classloader parent) throw Exception{
@@ -30,4 +34,22 @@ public static void insertDex(DexClassLoader dexClassLoader,
     insertNativeLibrary(dexClassLoader, baseClassLoader, nativeDir);
 }
 ```
+
+## 加载资源
+
+```java
+protected Resources createResources(Context context, String packageName,
+                                   File apk) throw Exception{
+    if(Constants.COMBINE_RESOURCES){
+        returnt ResourcesManager.createResources(context, packageName, apk);
+    }else{
+        Resources hostResources = context.getResources();
+        AssetManager assetManager = createAssetManager(context, apk);
+        return new Resources(assetManager, hostResources.getDisplayMetrics(), 
+                            hostResources.getConfiguration());
+    }
+}
+```
+
+## 加载Activity
 
