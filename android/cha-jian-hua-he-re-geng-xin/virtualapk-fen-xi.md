@@ -1,5 +1,7 @@
 # VirtualAPK分析
 
+
+
 ```java
 protected ClassLoader createClassLoader(Context context, File apk,
                                    File libsDir, Classloader parent) throw Exception{
@@ -26,8 +28,10 @@ public static void insertDex(DexClassLoader dexClassLoader,
     Ojbect allDexElements = combineArray(baseDexElements, newDexElements);
     Object pathList = getPathList(baseClassLoader);
     Reflector.with(pathList).field("dexElements").set(allDexElements);
-    
+
     insertNativeLibrary(dexClassLoader, baseClassLoader, nativeDir);
 }
 ```
+
+
 
