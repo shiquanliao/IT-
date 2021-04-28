@@ -3,6 +3,7 @@
 * [Home](README.md)
 * [Java](java/README.md)
   * [JVM](java/jvm/README.md)
+    * [Volitale原理解析](java/jvm/volitale-yuan-li-jie-xi.md)
     * [JVM类加载全过程](java/jvm/jvm-lei-jia-zai-quan-guo-cheng.md)
     * [java对象头](java/jvm/java-dui-xiang-tou.md)
   * [反射](java/fan-she/README.md)
