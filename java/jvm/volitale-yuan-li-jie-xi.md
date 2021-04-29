@@ -1,7 +1,5 @@
 # Volitale原理解析
 
-
-
 ## Volitale
 
 在并发编程中，我们必须要考虑3个问题：
@@ -20,12 +18,12 @@
 
 ### Volatile缓存可见性实现原理
 
-底层实现主要是通过**汇编lock前缀**指令, 它会锁定这块内存区域的缓存(**缓存行锁定**)并回写到主内存
+底层实现主要是通过**汇编lock前缀**指令, 它会锁定这块内存区域的缓存\(**缓存行锁定**\)并回写到主内存
 
 IA-32和Intel 64架构软件开发者手册对lock指令的解释:
 
 1. 会将当前处理器缓存行的数据**立即**写会到系统内存.
-2. 这个写回内存操作会引起在其他CPU缓存了改内存地址数据无效(MESI协议)
+2. 这个写回内存操作会引起在其他CPU缓存了改内存地址数据无效\(MESI协议\)
 3. 提供内存屏障功能,使lock前后指令**不能重排序**
 
 ### 指令重排序
@@ -51,7 +49,7 @@ public class TestDCL {
 }
 ```
 
-```
+```text
 // class version 52.0 (52)
 // access flags 0x21
 public class TestDCL {
@@ -131,12 +129,10 @@ PUTSTATIC TestDCL.sInstance : LTestDCL; // 2
 ### 内存屏障相关
 
 * JVM内存屏障规范
-
   * LoadLoad
   * StoreStore
   * LoadStore
   * StoreLoad
-
 * CPU硬件对JVM内存屏障的实现
 
   Intel CPU实现
@@ -149,18 +145,13 @@ PUTSTATIC TestDCL.sInstance : LTestDCL; // 2
 
   * lock前缀: lock指令不是一种内存屏障, 但是它能实现类似内存屏障的功能.
 
-
-***
-
-## synchronized 
+## synchronized
 
 synchronized 内置锁 是一种 对象锁（锁的是对象而非引用变量），**作用粒度是对象 ，可以用来实现对 临界资源的同步互斥访问 ，是 可重入 的。其可重入最大的作用是避免死锁**.
 
 > **子类同步方法调用了父类同步方法，如没有可重入的特性，则会发生死锁；**
 
 **synchronized给出的答案是在软件层面依赖JVM，而j.u.c.Lock给出的答案是在硬件层面依赖特殊的CPU指令。**
-
-
 
 * 锁住对象
 
@@ -173,7 +164,7 @@ synchronized 内置锁 是一种 对象锁（锁的是对象而非引用变量�
           }
       }
   }
-  
+
   // ----------------------字节码层面
   monitorenter, monitorexit
   // ----------------------------------操作系统层面
@@ -181,13 +172,10 @@ synchronized 内置锁 是一种 对象锁（锁的是对象而非引用变量�
   ```
 
   > 1. 如果monitor的进入数为0，则该线程进入monitor，然后将进入数设置为1，该线程即为monitor的所有者；
-  >
   > 2. 如果线程已经占有该monitor，只是重新进入，则进入monitor的进入数加1；
-  >
   > 3. 如果其他线程已经占用了monitor，则该线程进入阻塞状态，直到monitor的进入数为0，再重新尝试获取monitor的所有权
   >
-  >
-  >    monitorexit指令出现了两次，第1次为同步正常退出释放锁；第2次为发生异步退出释放锁；
+  > monitorexit指令出现了两次，第1次为同步正常退出释放锁；第2次为发生异步退出释放锁；
 
 * 锁住方法
 
@@ -198,7 +186,7 @@ synchronized 内置锁 是一种 对象锁（锁的是对象而非引用变量�
           System.out.println("Hello World!");
       }
   }
-  
+
   // ----------------------字节码层面
   ACC_SYNCHRONIZED 标示符
   // ----------------------------------操作系统层面
@@ -206,8 +194,6 @@ synchronized 内置锁 是一种 对象锁（锁的是对象而非引用变量�
   ```
 
 两**个指令的执行是JVM通过调用操作系统的互斥原语mutex来实现**
-
-
 
 [很好的一篇解释文章](https://www.cnblogs.com/aspirant/p/11470858.html)
 
@@ -217,7 +203,7 @@ Q: 什么是Monitor
 
 A: 抽象的定义, 具体到代码里面是通过`ObjectMonitor`对象跟一系列操作来实现的.
 
-```c++
+```cpp
 ObjectMonitor() {
     _header       = NULL;
     _count        = 0; // 记录个数

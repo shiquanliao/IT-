@@ -46,6 +46,8 @@ public class Main2 {
 
 ### newFixedThreadPool
 
+![](../../.gitbook/assets/threadpool-1.jpg)
+
 {% tabs %}
 {% tab title="普通使用" %}
 ```text
@@ -99,13 +101,13 @@ public class Main4 {
 {% endtab %}
 
 {% tab title="IO密集型" %}
-```
+```text
 public class Main5 {
     public static void main(String[] args) {
-        
+
         // must higher count for IO Tasks
         ExecutorService service = Executors.newFixedThreadPool(100);
-        
+
         // submit the tasks for execution
         for (int i = 0; i < 100; i++) {
             service.execute(new IOTask());
@@ -120,12 +122,13 @@ public class Main5 {
         }
     }
 }
-
 ```
 {% endtab %}
 {% endtabs %}
 
 ### CachedThreadPool
+
+![](../../.gitbook/assets/threadpool-2.jpg)
 
 ```text
 public class Main6 {
@@ -147,10 +150,11 @@ public class Main6 {
         }
     }
 }
-
 ```
 
 ### ScheduledThreadPool
+
+![](../../.gitbook/assets/threadpool-3.jpg)
 
 ```text
 public class Main7 {
@@ -180,8 +184,6 @@ public class Main7 {
 }
 
 // scheduleWithFixedDelay 最大的区别就是 ，scheduleAtFixedRate  不受任务执行时间的影响。
-
-
 ```
 
 {% hint style="warning" %}
@@ -195,6 +197,8 @@ public class Main7 {
 {% endhint %}
 
 ### SingleThreadedExecutor
+
+![](../../.gitbook/assets/threadpool-4.jpg)
 
 {% hint style="warning" %}
 **Pool size depends on the task type**
@@ -221,15 +225,13 @@ public class Main7 {
       <td style="text-align:left">
         <p>Exact number will depend on rate of task submissions and</p>
         <p>average task wait time.</p>
-        <p></p>
         <p>Too many threads will increase memory consumption too.</p>
       </td>
     </tr>
   </tbody>
 </table>
 
-
-## 构造函数(Constructor)
+## 构造函数\(Constructor\)
 
 ```java
 ExecutorSerivce service = Executors.newFixedThreadPool(10);
@@ -249,24 +251,20 @@ public ThreadPoolExecutor(int corePoolSize,
                          RejectedExecutionHandler handler);
 ```
 
+| Parameter | Type | Meaning |
+| :--- | :--- | :--- |
+| corePoolSize | int | Minimum/Base size of the pool |
+| maxPoolSize | int | Maximum size of the pool |
+| keepAliveTime + unit | long | Time to keep an idle thread alive\(after which it is killed\) |
+| workQueue | BlockingQueue | Queue to store the tasks from which threads fetch them |
+| threadFactory | ThreadFactory | The factory to use to create new threads |
+| handler | RejectedExecutionHandler | Callback to use when tasks submitted are rejected |
 
-
-| Parameter            | Type                     | Meaning                                                     |
-| -------------------- | ------------------------ | ----------------------------------------------------------- |
-| corePoolSize         | int                      | Minimum/Base size of the pool                               |
-| maxPoolSize          | int                      | Maximum size of the pool                                    |
-| keepAliveTime + unit | long                     | Time to keep an idle thread alive(after which it is killed) |
-| workQueue            | BlockingQueue            | Queue to store the tasks from which threads fetch them      |
-| threadFactory        | ThreadFactory            | The factory to use to create new threads                    |
-| handler              | RejectedExecutionHandler | Callback to use when tasks submitted are rejected           |
-
-
-
-| Parameter     | FixedThreadPool      | CacheThreadPool   | ScheduledThreadPool | SingleThreadExecutor |
-| ------------- | -------------------- | ----------------- | ------------------- | -------------------- |
-| corePoolSize  | constructor-arg      | 0                 | constructor-arg     | 1                    |
-| maxPoolSize   | same as corePoolSize | Integer.MAX_VALUE | Integer.MAX_VALUE   | 1                    |
-| keepAliveTime | 0 seconds            | 60 seconds        | 60 seconds          | 0 seconds            |
+| Parameter | FixedThreadPool | CacheThreadPool | ScheduledThreadPool | SingleThreadExecutor |
+| :--- | :--- | :--- | :--- | :--- |
+| corePoolSize | constructor-arg | 0 | constructor-arg | 1 |
+| maxPoolSize | same as corePoolSize | Integer.MAX\_VALUE | Integer.MAX\_VALUE | 1 |
+| keepAliveTime | 0 seconds | 60 seconds | 60 seconds | 0 seconds |
 
 {% hint style="warning" %}
 Note: Core pool threads are never killed unless `allowCoreThreadTimeOut(boolean value)` is set to true.
@@ -274,27 +272,27 @@ Note: Core pool threads are never killed unless `allowCoreThreadTimeOut(boolean 
 
 ## Queue Type
 
-| Pool                 | Queue Type          | Why?                                                         |
-| -------------------- | ------------------- | ------------------------------------------------------------ |
-| FixedThreadPool      | LinkedBlockingQueue | Threads are limited, thus unbounded queue to store all tasks.<br /><br />Note: Since queue can never become full, new threads are never created. |
-| SingleThreadExexutor | LinkedBlockingQueue | same to FixedThreadPool                                      |
-| CacheThreadPool      | SynchronousQueue    | Threads are unbounded, thus no need to store the tasks. <br />Synchronous Queue is a queue with single slot. |
-| ScheduledThreadPool  | DelayedWorkQueue    | Special queue that deals with schedules/time-delays          |
-|                      |                     |                                                              |
-| Custom               | ArrayBlockingQueue  | Bounded queue to store the tasks. if queue gets full,<br />thread is create(as long as count is less than maxPoolSize) |
-
-
+| Pool | Queue Type | Why? |
+| :--- | :--- | :--- |
+| FixedThreadPool | LinkedBlockingQueue | Threads are limited, thus unbounded queue to store all tasks.  Note: Since queue can never become full, new threads are never created. |
+| SingleThreadExexutor | LinkedBlockingQueue | same to FixedThreadPool |
+| CacheThreadPool | SynchronousQueue | Threads are unbounded, thus no need to store the tasks.  Synchronous Queue is a queue with single slot. |
+| ScheduledThreadPool | DelayedWorkQueue | Special queue that deals with schedules/time-delays |
+|  |  |  |
+| Custom | ArrayBlockingQueue | Bounded queue to store the tasks. if queue gets full, thread is create\(as long as count is less than maxPoolSize\) |
 
 使用SynchronousQueue的目的就是保证“对于提交的任务，如果有空闲线程，则使用空闲线程来处理；否则新建一个线程来处理任务”。
 
 ## Rejection Policies
 
-| Policy              | What it meas?                                                |
-| ------------------- | ------------------------------------------------------------ |
-| AbortPolicy         | Submitting new tasks throws RejectedExecutionException(Runtime Exception) |
-| DiscardPolicy       | Submitting new tasks silently discards it.                   |
+![](../../.gitbook/assets/threadpool-5.jpg)
+
+| Policy | What it meas? |
+| :--- | :--- |
+| AbortPolicy | Submitting new tasks throws RejectedExecutionException\(Runtime Exception\) |
+| DiscardPolicy | Submitting new tasks silently discards it. |
 | DiscardOldestPolicy | Submitting new tasks drops existing oldest task, and new task is added to the queue. |
-| CallerRunsPolicy    | Submitting new tasks will execute the task on the caller thread itself. <br />This can create feedback loop where caller thread is busy executing the task and<br />cannot subimt new tasks at fast pace. |
+| CallerRunsPolicy | Submitting new tasks will execute the task on the caller thread itself.  This can create feedback loop where caller thread is busy executing the task and cannot subimt new tasks at fast pace. |
 
 自定义拒绝策略
 
@@ -306,8 +304,6 @@ private static class CustomRejectionHandler implements RejectedExecutionHandler{
     }
 }
 ```
-
-
 
 ```java
 // initiate shutdown
@@ -324,4 +320,8 @@ service.awaitTermination(10, TimeUnit.SECONDS);
 // will initiate shutdown and return all queued tasks
 List<Runnable> runnables = service.shutdownNow();
 ```
+
+### executor.get\(\)
+
+![](../../.gitbook/assets/threadpool-6.jpg)
 

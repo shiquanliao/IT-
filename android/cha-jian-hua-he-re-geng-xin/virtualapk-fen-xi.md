@@ -1,7 +1,5 @@
 # VirtualAPK分析
 
-
-
 ## 加载类
 
 ```java
@@ -30,7 +28,7 @@ public static void insertDex(DexClassLoader dexClassLoader,
     Ojbect allDexElements = combineArray(baseDexElements, newDexElements);
     Object pathList = getPathList(baseClassLoader);
     Reflector.with(pathList).field("dexElements").set(allDexElements);
-    
+
     insertNativeLibrary(dexClassLoader, baseClassLoader, nativeDir);
 }
 ```
@@ -75,15 +73,13 @@ public static ComponentName getComponent(Intent intent){
     if(intent == null) return null;
     if(isIntentFromPlugin(intent)){
         return new ComponentName(
-        	intent.getStringExtra(Constants.KEY_TARGET_PACKAGE);
-        	intent.getStringExtra(Constants.KEY_TARGET_ACTIVITY);
+            intent.getStringExtra(Constants.KEY_TARGET_PACKAGE);
+            intent.getStringExtra(Constants.KEY_TARGET_ACTIVITY);
         );
     }
     return intent.getComponent();
 }
 ```
-
-
 
 ## 加载Service
 
@@ -99,8 +95,8 @@ protected void hookSystemService(){
     }
     IActivityManager origin = defaultSingleton.get();
     IActivityManager activityManagerProxy = (IActivityManager)Proxy.newProxyInstance(
-    	mContext.getClassLOader(), new Class[]{IActivity.class},
-    	createActivityManagerProxy(origin));
+        mContext.getClassLOader(), new Class[]{IActivity.class},
+        createActivityManagerProxy(origin));
     Reflector.with(defaultSingleton).field("mInstance").set(activityManagerProxy);
 }
 ```
@@ -131,7 +127,7 @@ public int onStartCommand(Intent intent, int flags, int startId){
     target.setExtrasClassLoader(plugin.getClassLoader());
     ...
     case EXTRA_COMMAND_START_SERVICE{
-    	ActivityThread mainThread = ActivityThread.currentActivityThread();
+        ActivityThread mainThread = ActivityThread.currentActivityThread();
         IApplicationThread appThread = mainThread.getApplicationThread();
         Service service;
         service = (Service)plugin.getClassLoader()
@@ -141,13 +137,11 @@ public int onStartCommand(Intent intent, int flags, int startId){
         attach.invoke(service, plugin.getPluginContext(),
                       mainThread, component.getClassName(), 
                       token, app, am);
-        
+
         service.onStartCommand(target, 0, ...);
     }
 }
 ```
-
-
 
 ## 加载广播
 
