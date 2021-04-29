@@ -229,6 +229,99 @@ public class Main7 {
 </table>
 
 
+## 构造函数(Constructor)
+
+```java
+ExecutorSerivce service = Executors.newFixedThreadPool(10);
+
+public static ExecutorService newFixedThreadPool(int nThreads){
+    return new ThreadPoolExecutor(nThreads, nThreads, 
+                                  0L, TimeUnit.MILLISECONDS,
+                                 new LinkedBlockingQueue<Runnable>());
+}
+
+public ThreadPoolExecutor(int corePoolSize,
+                         int maximumPoolSize,
+                         long keepAliveTime,
+                         TimeUnit unit,
+                         BlockingQueue<Runnable> workQueue,
+                         ThreadFacotry threadFactory,
+                         RejectedExecutionHandler handler);
+```
 
 
+
+| Parameter            | Type                     | Meaning                                                     |
+| -------------------- | ------------------------ | ----------------------------------------------------------- |
+| corePoolSize         | int                      | Minimum/Base size of the pool                               |
+| maxPoolSize          | int                      | Maximum size of the pool                                    |
+| keepAliveTime + unit | long                     | Time to keep an idle thread alive(after which it is killed) |
+| workQueue            | BlockingQueue            | Queue to store the tasks from which threads fetch them      |
+| threadFactory        | ThreadFactory            | The factory to use to create new threads                    |
+| handler              | RejectedExecutionHandler | Callback to use when tasks submitted are rejected           |
+
+
+
+| Parameter     | FixedThreadPool      | CacheThreadPool   | ScheduledThreadPool | SingleThreadExecutor |
+| ------------- | -------------------- | ----------------- | ------------------- | -------------------- |
+| corePoolSize  | constructor-arg      | 0                 | constructor-arg     | 1                    |
+| maxPoolSize   | same as corePoolSize | Integer.MAX_VALUE | Integer.MAX_VALUE   | 1                    |
+| keepAliveTime | 0 seconds            | 60 seconds        | 60 seconds          | 0 seconds            |
+
+{% hint style="warning" %}
+Note: Core pool threads are never killed unless `allowCoreThreadTimeOut(boolean value)` is set to true.
+{% endhint %}
+
+## Queue Type
+
+| Pool                 | Queue Type          | Why?                                                         |
+| -------------------- | ------------------- | ------------------------------------------------------------ |
+| FixedThreadPool      | LinkedBlockingQueue | Threads are limited, thus unbounded queue to store all tasks.<br /><br />Note: Since queue can never become full, new threads are never created. |
+| SingleThreadExexutor | LinkedBlockingQueue | same to FixedThreadPool                                      |
+| CacheThreadPool      | SynchronousQueue    | Threads are unbounded, thus no need to store the tasks. <br />Synchronous Queue is a queue with single slot. |
+| ScheduledThreadPool  | DelayedWorkQueue    | Special queue that deals with schedules/time-delays          |
+|                      |                     |                                                              |
+| Custom               | ArrayBlockingQueue  | Bounded queue to store the tasks. if queue gets full,<br />thread is create(as long as count is less than maxPoolSize) |
+
+
+
+使用SynchronousQueue的目的就是保证“对于提交的任务，如果有空闲线程，则使用空闲线程来处理；否则新建一个线程来处理任务”。
+
+## Rejection Policies
+
+| Policy              | What it meas?                                                |
+| ------------------- | ------------------------------------------------------------ |
+| AbortPolicy         | Submitting new tasks throws RejectedExecutionException(Runtime Exception) |
+| DiscardPolicy       | Submitting new tasks silently discards it.                   |
+| DiscardOldestPolicy | Submitting new tasks drops existing oldest task, and new task is added to the queue. |
+| CallerRunsPolicy    | Submitting new tasks will execute the task on the caller thread itself. <br />This can create feedback loop where caller thread is busy executing the task and<br />cannot subimt new tasks at fast pace. |
+
+自定义拒绝策略
+
+```java
+private static class CustomRejectionHandler implements RejectedExecutionHandler{
+    @Override
+    public void rejectedExecution(Runnable r, ThreadPoolExecutor executor){
+        // logging / operations to perform on rejection
+    }
+}
+```
+
+
+
+```java
+// initiate shutdown
+service.shutdown();
+// will throw RejectionExecutionException
+// service.execute(new Task());
+// will return true, since shutdown has begun
+service.isShutdown();
+// will return true if all tasks are completed
+// including queued ones
+service.isTerminated();
+// block until all task are completed or if timeout occurs
+service.awaitTermination(10, TimeUnit.SECONDS);
+// will initiate shutdown and return all queued tasks
+List<Runnable> runnables = service.shutdownNow();
+```
 

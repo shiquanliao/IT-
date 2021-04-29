@@ -43,3 +43,9 @@ setState(() {
 
 > const必须在编译期就确定， final可以后期在runtime赋值
 
+
+
+
+
+**Flutter 最少有3个线程: UI Thread, GPU Thread, IO Thread**
+
