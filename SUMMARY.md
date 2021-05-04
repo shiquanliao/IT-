@@ -49,4 +49,6 @@
   * [Dart语法](flutter/dart-yu-fa.md)
   * [开发技巧](flutter/kai-fa-ji-qiao.md)
   * [面试总结](flutter/mian-shi-zong-jie.md)
+* [ffmpeg](ffmpeg/README.md)
+  * [ffmpeg命令](ffmpeg/ffmpeg-ming-ling.md)
 
