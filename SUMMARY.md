@@ -2,6 +2,8 @@
 
 * [Home](README.md)
 * [Java](java/README.md)
+  * [泛型](java/fan-xing/README.md)
+    * [通配符](java/fan-xing/tong-pei-fu.md)
   * [容器](java/rong-qi/README.md)
     * [HashMap, HashSet](java/rong-qi/hashset.md)
     * [LinkedList, ArrayList](java/rong-qi/linkedlist-arraylist.md)
