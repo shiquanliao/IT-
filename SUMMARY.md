@@ -43,6 +43,7 @@
     * [手写Handler-Looper](android/handler/shou-xie-handlerlooper.md)
     * [Looper相关](android/handler/looper-xiang-guan.md)
   * [NDK](android/ndk/README.md)
+    * [JNI----回调Java](android/ndk/jni-hui-tiao-java.md)
     * [JNI----CPU架构相关的知识](android/ndk/jia-gou-xiang-guan-de-zhi-shi.md)
     * [JNI----函数绑定](android/ndk/jni-han-shu-bang-ding.md)
     * [JNI----数据传递](android/ndk/jni-shu-ju-chuan-di.md)
