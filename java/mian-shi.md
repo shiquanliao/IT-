@@ -12,3 +12,5 @@
 
 Static可以修饰内部类、方法、变量、代码块
 
+### 4. StringBuffer，Stringbuilder有什么区别？
+
