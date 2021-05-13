@@ -62,4 +62,6 @@
   * [ffmpeg命令](ffmpeg/ffmpeg-ming-ling.md)
 * [网络](wang-luo/README.md)
   * [Http相关](wang-luo/http-xiang-guan.md)
+* [音视频](yin-shi-pin/README.md)
+  * [基础知识](yin-shi-pin/ji-chu-zhi-shi.md)
 
