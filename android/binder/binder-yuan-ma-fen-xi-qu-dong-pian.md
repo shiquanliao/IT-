@@ -19,7 +19,7 @@ Android系统中对于传统的IPC使用较少（但也有使用，例如：_在
 * JNI层
 * C++层
 
- 驱动层位于Linux内核中，它提供了最底层的数据传递，对象标识，线程管理，调用过程控制等功能。**驱动层是整个Binder机制的核心**。
+  驱动层位于Linux内核中，它提供了最底层的数据传递，对象标识，线程管理，调用过程控制等功能。**驱动层是整个Binder机制的核心**。
 {% endhint %}
 
 既然是“进程间”通讯就至少牵涉到两个进程，Binder框架是典型的C/S架构。在下文中，我们把服务的请求方称之为Client，服务的实现方称之为Server。
@@ -42,20 +42,18 @@ Client要对Server发出请求，就必须知道服务端的id。Client需要先
 
 ![](../../.gitbook/assets/binder_servicemanager.png)
 
-
-
-## 驱动层 
+## 驱动层
 
 源码路径（这部分代码不在AOSP中，而是位于Linux内核代码中）：
 
-```
+```text
 /kernel/drivers/android/binder.c
 /kernel/include/uapi/linux/android/binder.h
 ```
 
 或者
 
-```
+```text
 /kernel/drivers/staging/android/binder.c
 /kernel/drivers/staging/android/uapi/binder.h
 ```

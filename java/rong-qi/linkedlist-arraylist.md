@@ -2,7 +2,7 @@
 
 ## 底层实现方式
 
-ArrayList是动态数组(扩容为1.5倍)
+ArrayList是动态数组\(扩容为1.5倍\)
 
 LinkedList是双向链表
 

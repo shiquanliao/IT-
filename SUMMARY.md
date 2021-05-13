@@ -64,4 +64,5 @@
   * [Http相关](wang-luo/http-xiang-guan.md)
 * [音视频](yin-shi-pin/README.md)
   * [基础知识](yin-shi-pin/ji-chu-zhi-shi.md)
+  * [视频编解码](yin-shi-pin/shi-pin-bian-jie-ma.md)
 
