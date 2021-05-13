@@ -42,5 +42,21 @@ Client要对Server发出请求，就必须知道服务端的id。Client需要先
 
 ![](../../.gitbook/assets/binder_servicemanager.png)
 
-## 驱动层 <a id="id-&#x9A71;&#x52A8;&#x5C42;"></a>
+
+
+## 驱动层 
+
+源码路径（这部分代码不在AOSP中，而是位于Linux内核代码中）：
+
+```
+/kernel/drivers/android/binder.c
+/kernel/include/uapi/linux/android/binder.h
+```
+
+或者
+
+```
+/kernel/drivers/staging/android/binder.c
+/kernel/drivers/staging/android/uapi/binder.h
+```
 
