@@ -122,6 +122,14 @@ When frames from a GOP reference frames from another GOP it’s called Open GOP.
 
  **IDR-frame ensures the following frames will not reference any frame before the IDR**.
 
+
+
+编码器
+
+> 编码阶段\(DTS\): I帧之后 一定是P帧
+
+B帧大部分保存的是运动矢量信息
+
 \*\*\*\*
 
 
