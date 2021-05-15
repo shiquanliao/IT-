@@ -114,7 +114,7 @@ A: 人眼对亮度比较敏感, 对色度不敏感, 所有可以减少UV分量, 
 
 I帧是在最早出现的概念.
 
-**IDR一定是I帧, 但是有时候我们不一定需要每个GOP的I帧都是IDR\(比如开放的GOP的I帧就不是IDR帧\)**
+**IDR一定是I帧, 但是有时候我们不一定需要每个GOP的I帧都是IDR\(比如开放的GOP的I帧就不是IDR帧\), 一个GOP只可能有一个I帧.**
 
  That series of frames can be a GOP, a Group of Picture, **a video is composed by a series of GOPs, each GOP starting with an I-frame.**
 
