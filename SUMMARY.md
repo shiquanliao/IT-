@@ -57,6 +57,7 @@
 * [Flutter](flutter/README.md)
   * [Dart语法](flutter/dart-yu-fa.md)
   * [开发技巧](flutter/kai-fa-ji-qiao.md)
+  * [插件化](flutter/cha-jian-hua.md)
   * [面试总结](flutter/mian-shi-zong-jie.md)
 * [ffmpeg](ffmpeg/README.md)
   * [ffmpeg命令](ffmpeg/ffmpeg-ming-ling.md)
@@ -64,6 +65,7 @@
   * [Http相关](wang-luo/http-xiang-guan.md)
 * [音视频](yin-shi-pin/README.md)
   * [基础知识](yin-shi-pin/ji-chu-zhi-shi.md)
+  * [音频编码标准](yin-shi-pin/yin-pin-bian-ma-biao-zhun.md)
   * [视频编解码](yin-shi-pin/shi-pin-bian-jie-ma.md)
   * [MediaCodec](yin-shi-pin/mediacodec.md)
 
