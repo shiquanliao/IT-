@@ -57,6 +57,7 @@
 * [Flutter](flutter/README.md)
   * [Dart语法](flutter/dart-yu-fa.md)
   * [开发技巧](flutter/kai-fa-ji-qiao.md)
+  * [Flutter编译产物](flutter/flutter-bian-yi-chan-wu.md)
   * [插件化](flutter/cha-jian-hua.md)
   * [动态化](flutter/dong-tai-hua.md)
   * [面试总结](flutter/mian-shi-zong-jie.md)
