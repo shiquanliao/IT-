@@ -1,13 +1,13 @@
 # 插件化
 
-#### Flutter 与原生通信整体流程
+## Flutter 与原生通信整体流程
 
 ```dart
 Future<dynamic> invokeMethod(String method, [dynamic arguments]) async{
     assert(method != null);
     // send message
     final dynamic result = await BinaryMessage.send(
-    	name,
+        name,
         codec.encodeMethodCall(MethodCall(method, arguments))
     );
     if(result == null)
@@ -16,7 +16,7 @@ Future<dynamic> invokeMethod(String method, [dynamic arguments]) async{
 }
 ```
 
-- 这里截取了 send 方法里关键代码， dart 层最终通过调用了 native 方法 Window_sendPlatformMessage，将序列化后的对象通过 c 层进行发送：
+* 这里截取了 send 方法里关键代码， dart 层最终通过调用了 native 方法 Window\_sendPlatformMessage，将序列化后的对象通过 c 层进行发送：
 
 ```dart
 {
@@ -30,18 +30,18 @@ String _sendPlatFormMessage(String name, PlatFormMessageResponseCallback callbac
                            ByteData data) native 'Window_sendPlatformMessage';
 ```
 
-- 我们在 Flutter engine 的 native 代码中可以找到上述 native 方法的对应实现,这里截取关键部分,可以看到最后是交给了 WindowClient 的 handlePlatformMessage 方法进行实现，我们继续往下跟：
+* 我们在 Flutter engine 的 native 代码中可以找到上述 native 方法的对应实现,这里截取关键部分,可以看到最后是交给了 WindowClient 的 handlePlatformMessage 方法进行实现，我们继续往下跟：
 
 ```c
 ...
 dart_state->window()->client()->HandlePlatformMessage(
-	fml::MakeRefCounted<PlatformMessage>(name, response)
+    fml::MakeRefCounted<PlatformMessage>(name, response)
 );
 ```
 
-- （这里以 Android 举例，iOS 同理）可以看到，在 Android 平台 HandlePlatformMessage 方法中，调用到了 JNI 方法，将 c 层收到的信息向 java 层抛：
+* （这里以 Android 举例，iOS 同理）可以看到，在 Android 平台 HandlePlatformMessage 方法中，调用到了 JNI 方法，将 c 层收到的信息向 java 层抛：
 
-```c++
+```cpp
 void PlatformViewAndroid::HandlePlatformMessage(
     fml::RefPtr<blink::PlatformMessage> message) {
   JNIEnv* env = fml::jni::AttachCurrentThread();
@@ -63,12 +63,11 @@ void PlatformViewAndroid::HandlePlatformMessage(
                                      nullptr, response_id);
   }
 }
-
 ```
 
-- 看一下 JNI 对应的 java 方法，最终通过 handler.onMessage(),完成了本次 dart 信息的传递。方法中的 handler，就是我们前面提到的 MethodHandler，也是我们插件的 Native 模块注册的 MethodHandler
+* 看一下 JNI 对应的 java 方法，最终通过 handler.onMessage\(\),完成了本次 dart 信息的传递。方法中的 handler，就是我们前面提到的 MethodHandler，也是我们插件的 Native 模块注册的 MethodHandler
 
-```
+```text
   private void handlePlatformMessage(final String channel, byte[] message, final int replyId) {
         this.assertAttached();
         BinaryMessageHandler handler = (BinaryMessageHandler)this.mMessageHandlers.get(channel);
@@ -86,6 +85,5 @@ void PlatformViewAndroid::HandlePlatformMessage(
             nativeInvokePlatformMessageEmptyResponseCallback(this.mNativePlatformView, replyId);
         }
     }
-
 ```
 
