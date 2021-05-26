@@ -73,4 +73,6 @@
   * [MediaCodec](yin-shi-pin/mediacodec.md)
 * [编译原理](bian-yi-yuan-li/README.md)
   * [基础知识](bian-yi-yuan-li/ji-chu-zhi-shi.md)
+* [DevOps](devops/README.md)
+  * [Jenkins](devops/jenkins.md)
 
