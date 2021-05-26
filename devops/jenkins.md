@@ -18,6 +18,8 @@ DevOps is an evolution form Agile model of software development
 * Deploy: Application is packaged after release and deployed from development server to production server.
 * **Operate**: Once software is deployed, operations team perform activities such as configuring servers and provisioning them with the required resources.
 * **Monitor**: Monitoring allows IT organization to identify specific issues of specific releases and understand the impact on end-users.
-* 
+
+
+
 
 
