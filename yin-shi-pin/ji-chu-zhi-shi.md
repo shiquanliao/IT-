@@ -7,7 +7,7 @@
 ### 色彩空间
 
 * RGB
-* YUV
+* YUV：Y, Cr, Cb
 * HSV/HSB
 * HSI/HSL
 * Lab
@@ -19,42 +19,53 @@ Q: YUV有什么优势?
 A: 人眼对亮度比较敏感, 对色度不敏感, 所有可以减少UV分量, 压缩视频体积
 {% endhint %}
 
+### 视频编码
+
+* H26X\(1/2/3/4/5\)系列: ITU\(international Telecommunication Union\)国际电传视讯联盟主导
+* MPEG\(1/2/3/4\)系列: MPEG\(Moving Picutre Experts Group\)主导
+
 ## 音频
 
 {% hint style="info" %}
 声波的三要素：**频率**，**振幅**，**波形**。
+
+频率：音阶的高低。
+
+振幅：响度。
+
+波形：音色。
 {% endhint %}
+
+
 
 脉冲编码调制\(PCM\)是原始数据
 
-采集PCM的步骤
+采集PCM\(Pulse Code Modulation\)的步骤
 
 > 模拟信号 -&gt; 采样 -&gt; 量化 -&gt; 编码 -&gt; 数字信号
 >
-> 奈奎斯特采样定理：**为了不失真地恢复模拟信号，采样频率应该不小于模拟信号频谱中最高频率的2倍**
+> 奈奎斯特采样定理：**为了不失真地恢复模拟信号，采样频率应该不小于模拟信号频谱中最高频率的2倍。**
 
 采样率: 人耳能听到的最高频率为20kHz，所以为了满足人耳的听觉要求，采样率至少为40kHz，通常为44.1kHz，更高的通常为48kHz。
 
 采样位数: 通常有8位、16位、32位。
+
+_**PCM数据三要素：量化格式\(sampleFormat\), 采样率\(sampleRate\), 声道数\(channel\)。**_
 
 关于FPS, BPS
 
 * fps: frames per second
 * bps: bits per second
 
-## 视频编码
+### 音频编码
 
-* H26X\(1/2/3/4/5\)系列: ITU\(international Telecommunication Union\)国际电传视讯联盟主导
-* MPEG\(1/2/3/4\)系列: MPEG\(Moving Picutre Experts Group\)主导
-
-## 音频编码
-
-* WAV
-* MP3
+* WAV: pcm数据格式前面加上**44字节头**
+* MP3： **LAME编码**
 * FLAC
 * APE
 * WMA
 * AAC
+* Ogg: 有潜力的新编码格式， 免费。
 
 ### AAC格式
 
