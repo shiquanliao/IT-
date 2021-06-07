@@ -72,6 +72,7 @@
   * [音频编码标准](yin-shi-pin/yin-pin-bian-ma-biao-zhun.md)
   * [视频编解码](yin-shi-pin/shi-pin-bian-jie-ma.md)
   * [MediaCodec](yin-shi-pin/mediacodec.md)
+  * [OpenSL ES](yin-shi-pin/opensl-es.md)
 * [编译原理](bian-yi-yuan-li/README.md)
   * [基础知识](bian-yi-yuan-li/ji-chu-zhi-shi.md)
 * [DevOps](devops/README.md)
